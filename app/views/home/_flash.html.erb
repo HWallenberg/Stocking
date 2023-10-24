@@ -1,0 +1,9 @@
+<br/>
+<% flash.each do |key, value| %>
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <div class="text-md-end">
+      <%= value.chomp %>
+      <i class="fas fa-times fa-1x" data-bs-dismiss="alert" aria-label="Close"></i>
+    </div>
+  </div>
+<% end %>

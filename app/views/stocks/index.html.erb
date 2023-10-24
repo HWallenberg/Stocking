@@ -1,0 +1,23 @@
+<h1>Stocks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ticker</th>
+      <th>User_id</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @stocks.each do |stock| %>
+    <% if stock.id == current_user.id %>
+      <tr>
+        <td><%= stock.ticker %></td>
+        <td><%= stock.user_id %></td>
+        <td><%= link_to 'Edit', edit_stock_path(stock) %></td>
+        <td><%= link_to 'Delete', stock, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      <%end%>
+    <%end%>
+  </tbody>
+</table>

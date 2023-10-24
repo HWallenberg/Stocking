@@ -94,4 +94,7 @@ Rails.application.configure do
   # ]
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+
+  # Devise mailer setting change when Heroku site running
+  config.action_mailer.default_url_options = { host: 'myHerokuURL', port: 3000 }
 end
