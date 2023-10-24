@@ -1,0 +1,18 @@
+<h1>Stocking</h1>
+<p>Hello this is my stock market app</p>
+
+<!--setting data turbo false to avoid redirect error on submit
+see https://stackoverflow.com/questions/70921317/how-can-i-disable-hotwire-turbo-the-turbolinks-replacement-for-all-forms-in -->
+<%= form_tag root_path, method: "POST", data: { turbo: false } do %>
+  <%= text_field_tag "ticker", nil, placeholder: "Enter Ticker Symbol", size: 50 %>
+  <%= submit_tag "Lookup" %>
+<% end %>
+
+<% if @stock %>
+    <%= @stock.company_name %><br/>
+    <%= @stock.latest_price %><br/>
+<% end %>
+
+<% if @error %>
+    <%=@error%>
+<% end %>
