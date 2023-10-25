@@ -75,3 +75,9 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
+
+group :production do
+  gem "pg", "~> 1.1"
+  gem "rails_12factor", "~> 0.0.3"
+
+end
