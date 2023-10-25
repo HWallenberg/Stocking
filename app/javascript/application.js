@@ -8,3 +8,13 @@ import "controllers"
 // https://stackoverflow.com/questions/70921317/how-can-i-disable-hotwire-turbo-the-turbolinks-replacement-for-all-forms-in
 //Turbo.setFormMode("optin")
 
+document.addEventListener('turbo:load', function () {
+    document.querySelectorAll('[data-confirm]').forEach(function (element) {
+      element.addEventListener('click', function (event) {
+        if (!confirm(element.getAttribute('data-confirm'))) {
+          event.preventDefault();
+        }
+      });
+    });
+  });
+  

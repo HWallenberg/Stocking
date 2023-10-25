@@ -1,8 +1,7 @@
-<%= render @stock %>
-
+<%= render "show_form", stock: @stock %>
 <div>
-  <%= link_to "Edit this stock", edit_stock_path(@stock) %> |
+  <br />
   <%= link_to "Back to stocks", stocks_path %>
 
-  <%= button_to "Destroy this stock", @stock, method: :delete %>
 </div>
+

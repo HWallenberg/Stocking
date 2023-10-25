@@ -1,0 +1,17 @@
+<%StockQuote::Stock.new(api_key: "pk_c0bb0694ce7747179bbf309fb94a72f2")%>
+      <%begin%>
+          <% @ticker = StockQuote::Stock.quote(@stock.ticker) %>
+          <% @logo = StockQuote::Stock.logo(@stock.ticker)%>
+      <%rescue StandardError => e %>
+         <%= @error = "There was a problem getting stock: #{e.message}" %>
+      <% end %>
+<%if !@error %>
+  <img src="<%=@logo.url%>"><br/>
+  <strong><%= @ticker.company_name %></strong><br/>
+  Ticker Symbol: <%= @ticker.symbol %><br/>
+  Current Price: $<%= number_with_precision(@ticker.latest_price, :precision => 2, :delimiter => ',') %><br/>
+  Previous Close: $<%=number_with_precision(@ticker.previous_close, :precision => 2, :delimiter => ',') %><br/>
+  Percent Change: <%=@ticker.change_percent %>%<br/>
+  YTD Change: <%=number_with_precision(@ticker.ytd_change, :precision => 2, :delimiter => ',')%>%<br/>
+  Market Cap: $<%= number_with_precision(@ticker.market_cap, :precision => 2, :delimiter => ',') %><br/>
+<%end%>
