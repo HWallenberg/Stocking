@@ -1,26 +1,34 @@
-<%= form_with(model: stock) do |form| %>
-  <% if stock.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(stock.errors.count, "error") %> prohibited this stock from being saved:</h2>
+<div class="col-md-6 offset-md-3">
+  <div class="p-2 mb-5 bg-light rounded-5">
+    <div class="container-fluid py-4">
+      <%= form_with(model: stock) do |form| %>
+        <% if stock.errors.any? %>
+          <div style="color: red">
+            <h2><%= pluralize(stock.errors.count, "error") %> prohibited this stock from being saved:</h2>
 
-      <ul>
-        <% stock.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+            <ul>
+              <% stock.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
-      </ul>
+
+        <div class="mb-1">
+          <%= form.label :ticker,  class: "form-label" %>
+          <%= form.text_field :ticker, class: "form-control"%>
+        </div>
+
+        <div>
+          <%= form.number_field :user_id, value: current_user.id, type: :hidden %>
+        </div>
+        <br />
+        <div >
+          <%= form.submit class: "btn btn-secondary" %>
+        </div>
+      <% end %>
+      <br />
+      <%= link_to "Back to stocks", stocks_path %>
     </div>
-  <% end %>
-
-  <div>
-    <%= form.label :ticker, style: "display: block" %>
-    <%= form.text_field :ticker %>
   </div>
-
-  <div>
-    <%= form.number_field :user_id, value: current_user.id, type: :hidden %>
-  </div>
-  <br />
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
